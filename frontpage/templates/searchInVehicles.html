@@ -1,0 +1,98 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<style type="text/css">
+  .list-group-flush > .list-group-item:last-child {
+    border-bottom-width: 1px !important;
+  }
+  .hiden-link {
+    z-index: 4;
+    --bs-text-opacity: 0;
+  }
+  .hiden-link:hover {
+    --bs-text-opacity: 1 !important;
+  }
+</style>
+{% endblock %} {% block main %}
+<div class="mx-md-3 my-4 row">
+  <h1 class="display-4 fw-normal text-center">Accidents History Searching Tools</h1>
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h2>Search accidents from drivers</h2>
+        <form method="POST">
+          <p>Please type userId: 
+              <input type="text" name="userid"> 
+              <input type="submit" value="Search">
+          </p>
+        </form>
+
+      </div>
+      <div class="col">
+        <h2>Search accidents from vehicles</h2>
+        <form method="POST" action="/searchInVehicles">
+          <p>Please type vehicle plate number: 
+              <input type="text" name="plate_num"> 
+              <input type="submit" value="Search">
+          </p>
+        </form>
+
+        {% for value in data_vehicles %}
+        <p>Note: Please click <a href="/tool">Tools</a> in bar if you want to search in another way.</p>
+
+        <div class="card" style="max-width: 100%;">
+
+          <div class="card-body">
+            <h4 class="card-title border-bottom-dash">Vehicle Information</h4>
+
+            <div class="list-group list-group-flush">
+              <div class="row">
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>Plate Number: </strong> {{ value['plate_number'] }}</a>
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>Use of Year: </strong> {{ value['use_year'] }}</a>
+              </div>
+              <div class="row">
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>User Id: </strong> {{ value['uid'] }}</a>
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>Driver Name: </strong> {{ value['name'] }}</a>
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>Driver Age: </strong> {{ value['age'] }}</a>
+                <a target="_blank" class="col list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <strong>Driving Experience: </strong> {{ value['driving_age'] }} years</a>
+              </div>
+            </div>
+
+            <p class="my-4">For more information about accidents, input User ID on left page!</p>
+            
+          </div>
+        </div>
+        {% endfor %}
+
+
+        <!-- <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Plate number</th>
+              <th scope="col">Use of Year</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            {% for value in data_vehicles %}
+            <tr>
+              <td>{{ value['plate_number'] }}</td>
+              <td>{{ value['use_year'] }}</td>
+            </tr>
+            <p>Note: Please click <a href="/tool">Tools</a> in bar if you want to search in another way.</p>
+            {% endfor %}
+          </tbody>
+        </table> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  {% endblock %}
+  

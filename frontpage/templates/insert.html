@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+
+{% endblock %} {% block main %}
+
+<div class="my-4 mx-5">
+<h1>Record an Accident</h1>
+  
+<form method="POST" action="/add">
+    <p>Please type detail information as follows: 
+      <ul>
+      
+        <li>User Id<input type="text" name="uid"></li>
+        <li>Plate Number<input type="text" name="plate_number"></li>
+      </ul>
+        <!-- <li>Time<input type="timestamp" name="data"> Example: 6/30/2022 0:17</li>
+        <li>Collision ID<input type="text" name="collision_id"></li>
+        <li>Location
+          <ul>
+            <li>Coordinate<input type="text" name="coordinate"></li>
+            <li>Ziocode<input type="text" name="zipcode"></li>
+            <li>City<input type="text" name="city">Example: Bronx</li>
+            <li>On Street<input type="text" name="on_street"></li>
+            <li>Cross Street<input type="text" name="cross_street"></li>
+            <li>Out Street<input type="text" name="out_street"></li>
+          </ul>
+        </li>
+        <li>Result
+          <ul>
+            <li>Result ID<input type="int" name="rid"></li>
+            <li>Injured Number<input type="int" name="injured"></li>
+            <li>Death Number<input type="text" name="death"></li>
+          </ul>
+        </li>
+        <li>Vehicles
+          <ul>
+            <li>Plate Number<input type="text" name="plate_number"></li>
+            <li>Use of year<input type="text" name="use_year"></li>
+          </ul>
+        </li>
+        <li>Driver Information
+          <ul>
+            <li>User Id<input type="text" name="uid"></li>
+            <li>Name<input type="text" name="name"></li>
+            <li>Age<input type="text" name="age"></li>
+            <li>Driving Age<input type="text" name="driving_age"></li>
+          </ul>
+        </li> -->
+
+        <input type="submit" value="Add">
+        <div class="row">
+          <div class="col-6">
+            {% for n in data %}
+            <div>{{n}}</div>
+            {% endfor %}
+          </div>
+          <div class="col-6">
+            {% for n in data2 %}
+            <div>{{n}}</div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        
+        
+
+      </ul>
+    </p>
+</form>
+</div>
+
+{% endblock %} 

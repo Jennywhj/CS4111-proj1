@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<style type="text/css">
+  .list-group-flush > .list-group-item:last-child {
+    border-bottom-width: 1px !important;
+  }
+  .hiden-link {
+    z-index: 4;
+    --bs-text-opacity: 0;
+  }
+  .hiden-link:hover {
+    --bs-text-opacity: 1 !important;
+  }
+</style>
+{% endblock %} {% block main %}
+
+<div class="my-5 text-center">
+    <h1 class="display-4 fw-normal">Welcome to New York Accidents System</h1>
+    <div class="container col-lg-8">
+      <p class="lead fw-normal">A system that is designed for NY traffic management department which support uplaod, query and statistics functions.</p>
+     </div>
+    <a target="_blank" class="btn btn-outline-secondary" href="https://github.com/Jennywhj/project1">Coming soon (view the github)</a>
+  </div>
+
+<div class="my-4 mx-5">
+  <div class="text-center">
+      <h3>The past one week vehicle accidents records</h3>
+  </div>
+  <nav aria-label="Page">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="/base">Latest</a></li>
+      <li class="page-item"><a class="page-link" href="/past_week">Past 1 week</a></li>
+      <li class="page-item"><a class="page-link" href="/past_month">Past 1 month</a></li>
+      <li class="page-item"><a class="page-link" href="/past_year">Past 1 year</a></li>
+      <li class="page-item"><a class="page-link" href="/past_all">Show all</a></li>
+    </ul>
+  </nav>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Plate Number</th>
+        <th scope="col">Time</th>
+        <th scope="col">City</th>
+        <th scope="col">Street</th>
+        <th scope="col">Results</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for value in data %}
+      <tr>
+        <td>{{ value['plate_number'] }}</td>
+        <td>{{ value['time'] }}</td>
+        <td>{{ value['city'] }}</td>
+        <td>On {{ value['on_street'] }}, Cross {{ value['cross_street'] }},  Out {{ value['out_street'] }}</td>
+        <td>Death: {{ value['death'] }} Injured: {{ value['injured'] }}</td>
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
